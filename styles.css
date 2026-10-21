@@ -1153,3 +1153,177 @@ body {
   font-size: 0.82rem;
   color: var(--text-muted);
 }
+
+/* =========================================================================
+   Mobile responsive fixes (prevent horizontal overflow)
+   ========================================================================= */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip; /* clip (not hidden) keeps position: sticky working */
+}
+
+body {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* Flex/grid children must be allowed to shrink below their content width */
+.hero-top > div,
+.main-workspace > *,
+#places-container,
+.filter-primary-row > *,
+.card-top > div,
+.stat-box > div,
+.menu-name {
+  min-width: 0;
+}
+
+.hero-top > div:first-child {
+  flex: 1 1 320px;
+}
+
+.cards-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
+}
+
+.courses-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
+}
+
+.stats-strip {
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.32rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions .btn-action {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 9px 12px;
+    font-size: 0.82rem;
+  }
+
+  .stats-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .stat-box {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .stat-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.95rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+  }
+
+  .stat-value {
+    font-size: 0.82rem;
+  }
+
+  .filter-primary-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .map-toolbar {
+    padding: 10px;
+  }
+
+  .map-toolbar > div {
+    width: 100%;
+  }
+
+  .map-mode-switch {
+    flex: 1 1 auto;
+  }
+
+  .map-mode-btn {
+    flex: 1 1 auto;
+  }
+
+  .place-card {
+    padding: 14px;
+  }
+
+  .place-name {
+    font-size: 1.04rem;
+  }
+
+  .menu-row {
+    flex-wrap: wrap;
+    gap: 2px 8px;
+  }
+
+  .menu-price {
+    white-space: normal;
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .info-label {
+    min-width: 0;
+  }
+
+  .card-primary-actions .ext-link,
+  .card-links .ext-link {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .section-title {
+    font-size: 1.05rem;
+  }
+
+  .courses-section {
+    padding: 0 12px;
+  }
+
+  .toast {
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .stats-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .card-primary-actions .ext-link,
+  .card-links .ext-link {
+    flex: 1 1 100%;
+  }
+}
+
+/* Keep anchor targets visible below the sticky filter bar */
+.section-block,
+.place-card,
+#courses-anchor {
+  scroll-margin-top: 150px;
+}
